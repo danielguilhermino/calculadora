@@ -20,8 +20,6 @@ class AtivoSintetico(AtivoSinteticoBase):
     
     class Config:
         orm_mode = True
-        
-# --- Fim Ativo Sintético---
 
 # --- Inicio Rentabilidade ---
 
@@ -38,5 +36,3 @@ class RentabilidadeResponse(BaseModel):
     rentabilidade_acumulada: float
     rentabilidades_mensais: List[RentabilidadeMensal]
     rentabilidades_anuais: List[RentabilidadeAnual]
-
-# --- Fim Rentabilidade ---

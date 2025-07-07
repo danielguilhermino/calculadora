@@ -8,10 +8,10 @@ def get_ativo_por_id(db: Session, ativo_id: int):
 def get_ativo_por_nome(db: Session, nome: str):
     return db.query(models.AtivoSintetico).filter(models.AtivoSintetico.nome == nome).first()
 
-def get_all_ativos(db: Session, skip: int = 0, limit: int = 100):
+def get_todos_ativos(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.AtivoSintetico).offset(skip).limit(limit).all()
 
-def create_ativo(db: Session, ativo: schemas.AtivoSinteticoCreate):
+def criar_ativo(db: Session, ativo: schemas.AtivoSinteticoCreate):
     spread_decimal = ativo.spread / 100.0
     
     db_ativo = models.AtivoSintetico(

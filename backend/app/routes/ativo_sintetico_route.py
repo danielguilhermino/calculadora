@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 @router.post("/", response_model=schemas.AtivoSintetico, status_code=status.HTTP_201_CREATED)
-def create_ativo_sintetico(ativo: schemas.AtivoSinteticoCreate, db: Session = Depends(get_db)):
+def criar_ativo_sintetico(ativo: schemas.AtivoSinteticoCreate, db: Session = Depends(get_db)):
     """Informações importantes: 
 
         1) O nome do ativo deve ser único.
@@ -28,11 +28,11 @@ def create_ativo_sintetico(ativo: schemas.AtivoSinteticoCreate, db: Session = De
         errors.append("Índice base inválido. Deve ser CDI, Ibovespa ou IPCA")
     if errors:
         raise HTTPException(status_code=400, detail=f"Erros encontrados: {', '.join(errors)}")
-    return controller.create_ativo(db=db, ativo=ativo)
+    return controller.criar_ativo(db=db, ativo=ativo)
 
 @router.get("/", response_model=List[schemas.AtivoSintetico])
 def get_ativos_sinteticos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return controller.get_all_ativos(db, skip=skip, limit=limit)
+    return controller.get_todos_ativos(db, skip=skip, limit=limit)
 
 @router.put("/{ativo_id}", response_model=schemas.AtivoSintetico)
 def update_ativo_sintetico(ativo_id: int, ativo: schemas.AtivoSinteticoUpdate, db: Session = Depends(get_db)):

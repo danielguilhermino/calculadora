@@ -55,3 +55,19 @@ O projeto está organizado dentro de uma pasta raiz com as seguintes subpastas p
 - **PostgreSQL**: Optei pelo PostgreSQL. O `docker-compose` gerencia o ciclo de vida do serviço do banco.
 - **Carregamento de Dados**: A lógica de carregamento do CSV foi incluida na inicialização do backend para garantir que a base esteja de acordo.
 - **Healthcheck do Banco**: O `docker-compose` utiliza um `healthcheck` para garantir que o serviço de backend só inicie após o banco de dados PostgreSQL estar pronto para aceitar conexões, evitando erros de inicialização.
+
+## Prévia online
+
+Aproveitei para disponibilizar uma prévia que pode ser acessada através do link:
+
+https://calculadora.inteligente.app
+
+Utilizei a arquitetura abaixo na AWS:
+
+![alt text](image.png)
+
+** Motivos: **
+
+- Custo próximo de zero para manter a aplicação em funcionamento 24/7;
+- Aplicação com auto scaling nativo, consigo ir de 1 a 1 milhão de acesso sem gargalos e me preocupar com infra;
+- Free tier generoso da AWS nos serviços serverless, a aplicação pode ter milhares de acessos mensalmente e continuará custando poucos centavos.

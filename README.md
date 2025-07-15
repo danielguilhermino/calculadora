@@ -66,7 +66,7 @@ Utilizei a arquitetura abaixo na AWS:
 
 ![alt text](image.png)
 
-** Motivos: **
+**Motivos:**
 
 - Custo próximo de zero para manter a aplicação em funcionamento 24/7;
 - Aplicação com auto scaling nativo, consigo ir de 1 a 1 milhão de acesso sem gargalos e me preocupar com infra;

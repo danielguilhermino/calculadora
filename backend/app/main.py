@@ -11,7 +11,7 @@ from .models import financeiro_model
 from .routes import ativo_sintetico_route, rentabilidade_route
 
 def tentar_conectar_db():
-    """Tenta conectar ao banco de dados com retentativas."""
+    "Tenta conectar ao banco de dados com retentativas."
     retentativas = 5
     delay = 5
     for i in range(retentativas):
@@ -23,7 +23,7 @@ def tentar_conectar_db():
         except OperationalError as e:
             print(f"Erro ao conectar ao banco de dados: {e}. Tentando novamente em {delay} segundos...")
             time.sleep(delay)
-    print("Não foi possível conectar ao banco de dados após várias tentativas.")
+    print("Não foi possível conectar ao banco de dados após várias tentativas, verifique se o banco de dados está em execução.")
     return False
 
 def criar_tabelas():

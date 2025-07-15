@@ -29,7 +29,7 @@ const AssetCRUD = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setApiError(''); // Limpa erros anteriores a cada nova tentativa
+        setApiError('');
 
         const payload = { ...form, spread: parseFloat(form.spread) };
 
@@ -42,12 +42,9 @@ const AssetCRUD = () => {
             resetForm();
             fetchAssets();
         } catch (err) {
-            // --- TRATAMENTO DE ERRO AQUI ---
             if (err.response && err.response.status === 400 && err.response.data.detail) {
-                // Se for um erro 400 com uma mensagem de 'detail', exibe essa mensagem
                 setApiError(err.response.data.detail);
             } else {
-                // Para outros tipos de erro
                 setApiError('Ocorreu um erro inesperado. Por favor, tente novamente.');
                 console.error("Erro ao salvar ativo:", err);
             }
@@ -55,7 +52,7 @@ const AssetCRUD = () => {
     };
 
     const handleEdit = (asset) => {
-        setApiError(''); // Limpa o erro ao começar a editar
+        setApiError('');
         setIsEditMode(true);
         const spreadAsPercentage = parseFloat((asset.spread * 100).toFixed(4));
         
@@ -77,12 +74,11 @@ const AssetCRUD = () => {
     const resetForm = () => {
         setForm({ id: null, nome: '', indice_base: 'CDI', spread: 5 });
         setIsEditMode(false);
-        setApiError(''); // Limpa o erro ao resetar o formulário
+        setApiError('');
     };
 
     return (
         <Grid container spacing={3}>
-            {/* Formulário */}
             <Grid item xs={12} md={4}>
                 <Card>
                     <CardContent>
@@ -114,7 +110,6 @@ const AssetCRUD = () => {
                 </Card>
             </Grid>
 
-            {/* Lista de Ativos */}
             <Grid item xs={12} md={8}>
                 <TableContainer component={Paper}>
                     <Table>

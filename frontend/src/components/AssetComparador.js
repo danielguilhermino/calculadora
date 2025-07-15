@@ -10,7 +10,7 @@ const AssetComparador = () => {
     const [selectedAssets, setSelectedAssets] = useState([]);
     const [dates, setDates] = useState({
         data_inicial: dayjs('2020-08-01'),
-        data_final: dayjs('2023-12-31')
+        data_final: dayjs('2025-07-02')
     });
     const [chartData, setChartData] = useState({ series: [], dataset: [] });
     const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ const AssetComparador = () => {
         setChartData({ series: [], dataset: [] });
 
         try {
-            // Cria um array de promises, uma para cada requisição de API
+            // Array de promises, uma para cada requisição de API
             const promises = selectedAssets.map(asset => {
                 const params = {
                     indice: asset.nome,
@@ -51,11 +51,18 @@ const AssetComparador = () => {
                 return apiClient.get('/rentabilidade/', { params });
             });
 
-            // Executa todas as promises em paralelo
             const responses = await Promise.all(promises);
 
-            // Processa e mescla os resultados para o formato do gráfico
-            processChartData(responses.map(res => res.data));
+            const hasData = responses.some(res => 
+                res.data && res.data.rentabilidades_mensais && res.data.rentabilidades_mensais.length > 0
+            );
+
+            if (hasData) {
+                // Se houver dados, processa e monta o gráfico
+                processChartData(responses.map(res => res.data));
+            } else {
+                setError('Nenhum dado de rentabilidade encontrado para os ativos no período selecionado, selecione um período entre 01/08/2020 e 02/07/2025.');
+            }
 
         } catch (err) {
             setError('Erro ao buscar dados para comparação.');
@@ -83,10 +90,8 @@ const AssetComparador = () => {
             });
         });
         
-        // Converte o objeto mesclado em um array e ordena por data
         const dataset = Object.values(mergedData).sort((a, b) => a.mes - b.mes);
 
-        // Adiciona o ponto zero inicial
         const initialPoint = { mes: dayjs(dataset[0]?.mes).subtract(1, 'month').toDate() };
         seriesConfig.forEach(s => initialPoint[s.dataKey] = 0);
         dataset.unshift(initialPoint);
@@ -96,7 +101,6 @@ const AssetComparador = () => {
 
     return (
         <Grid container spacing={3}>
-            {/* Formulário */}
             <Grid item xs={12}>
                 <Card>
                     <CardContent>
@@ -122,7 +126,6 @@ const AssetComparador = () => {
                 </Card>
             </Grid>
 
-            {/* Gráfico de Comparação */}
             {error && <Grid item xs={12}><Alert severity="error">{error}</Alert></Grid>}
             {chartData.dataset.length > 0 && (
                 <Grid item xs={12}>
@@ -138,7 +141,7 @@ const AssetComparador = () => {
                                         valueFormatter: (date) => dayjs(date).format('MMM/YY'),
                                     }]}
                                     series={chartData.series}
-                                    margin={{ left: 80 }} // Adiciona margem para os labels do eixo Y não cortarem
+                                    margin={{ left: 80 }}
                                 />
                             </Box>
                         </CardContent>

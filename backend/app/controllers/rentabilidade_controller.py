@@ -62,7 +62,6 @@ def calcular_rentabilidade_acumulada(db: Session, indice_nome: str, data_inicial
     else:
         rentabilidades_finais_mensais = rentabilidades_base_mensais
     
-    # Montagem da resposta
     rentabilidades_mensais_schema = []
     for dt, rentabilidade in rentabilidades_finais_mensais.items():
         if pd.notna(rentabilidade):

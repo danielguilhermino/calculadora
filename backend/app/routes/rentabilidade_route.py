@@ -22,6 +22,6 @@ def get_rentabilidade(
         return resultado
     except Exception as e:
         """
-        Preciso guardar o erro em log para análise posterior, mas não quero expor detalhes técnicos ao usuário.
+        Preciso guardar o erro em log para análise posterior, não quero expor detalhes técnicos ao usuário.
         """
         raise HTTPException(status_code=500, detail=f"Ocorreu um erro interno: {e}")

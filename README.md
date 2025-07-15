@@ -28,11 +28,11 @@ O projeto está organizado dentro de uma pasta raiz com as seguintes subpastas p
 1.  **Clone o repositório:**
     ```sh
     git clone https://github.com/danielguilhermino/calculadora
-    cd desafio-financeiro
+    cd calculadora
     ```
 
 2.  **Configure o ambiente:**
-    - Renomeie o arquivo `.env.example` (se houver) para `.env` ou crie um novo arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+    - Crie um novo arquivo `.env` na raiz do projeto com o seguinte conteúdo:
       ```env
       POSTGRES_USER=admin
       POSTGRES_PASSWORD=desafiovanguarda

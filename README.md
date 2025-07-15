@@ -1,6 +1,6 @@
-# Desafio Técnico: Calculadora de Rentabilidade Acumulada
+# Teste Técnico: Calculadora de Rentabilidade Acumulada
 
-Esta é uma solução completa para o desafio, envolvendo um backend em FastAPI com arquitetura em camadas(inspirado no modelo MVC para ajudar na organização), banco de dados PostgreSQL, um frontend em React e containerização com Docker.
+Esta é uma solução completa para o teste, envolvendo um backend em FastAPI com arquitetura em camadas(inspirado no modelo MVC para ajudar na organização), banco de dados PostgreSQL, um frontend em React e containerização com Docker.
 
 ## Estrutura do Projeto
 
@@ -12,7 +12,7 @@ O projeto está organizado dentro de uma pasta raiz com as seguintes subpastas p
 
 ## Tecnologias Utilizadas
 
-- **Backend**: Python, FastAPI, SQLAlchemy, Pandas, Pydantic
+- **Backend**: Python, FastAPI, SQLAlchemy, Pandas e Pydantic
 - **Frontend**: JavaScript, React, Axios
 - **Banco de Dados**: PostgreSQL
 - **Containerização**: Docker, Docker Compose
@@ -69,5 +69,5 @@ Utilizei a arquitetura abaixo na AWS:
 **Motivos:**
 
 - Custo próximo de zero para manter a aplicação em funcionamento 24/7;
-- Aplicação com auto scaling nativo, consigo ir de 1 a 1 milhão de acesso sem gargalos e me preocupar com infra;
+- Aplicação com auto scaling nativo, consigo ir de 1 a 1 milhão de acessos sem gargalos ou me preocupar com infra;
 - Free tier generoso da AWS nos serviços serverless, a aplicação pode ter milhares de acessos mensalmente e continuará custando poucos centavos.
